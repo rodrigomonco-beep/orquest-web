@@ -1,0 +1,122 @@
+---
+const navLinks = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#servicios', label: 'Servicios' },
+  { href: '#automatizacion', label: 'Automatización' },
+  { href: '#chatbots', label: 'Chatbots' },
+  { href: '#proceso', label: 'Proceso' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="#inicio" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center font-display font-black text-xl transition-transform duration-300 group-hover:scale-110">
+          O
+        </div>
+        <span class="font-display font-bold text-xl tracking-tight">
+          <span class="text-white">ORQUEST</span>
+          <span class="text-primary-light text-sm font-medium ml-1 hidden sm:inline">SYSTEM</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-1">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-300"
+          >
+            {link.label}
+          </a>
+        ))}
+        <a href="#contacto" class="ml-4 px-6 py-2.5 bg-primary text-white text-sm font-semibold rounded-xl hover:bg-primary-light transition-all duration-300 hover:shadow-[0_0_20px_rgba(124,58,237,0.4)]">
+          Empezar
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="menu-btn"
+        class="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-xl hover:bg-white/5 transition-colors"
+        aria-label="Abrir menú"
+      >
+        <div class="flex flex-col gap-1.5 w-6" id="menu-icon">
+          <span class="block h-0.5 w-full bg-white rounded transition-all duration-300 origin-center"></span>
+          <span class="block h-0.5 w-full bg-white rounded transition-all duration-300"></span>
+          <span class="block h-0.5 w-full bg-white rounded transition-all duration-300 origin-center"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="lg:hidden overflow-hidden transition-all duration-500 max-h-0 opacity-0">
+    <div class="glass border-t border-white/5 px-4 py-6 space-y-1">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class="mobile-link block px-4 py-3 text-slate-300 hover:text-white hover:bg-white/5 rounded-xl transition-all duration-300 font-medium"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="#contacto" class="mobile-link block mt-4 px-4 py-3 bg-primary text-white text-center font-semibold rounded-xl hover:bg-primary-light transition-all duration-300">
+        Empezar Ahora
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  let isOpen = false;
+
+  // Scroll effect
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add('glass', 'shadow-lg', 'shadow-dark-900/50');
+    } else {
+      navbar?.classList.remove('glass', 'shadow-lg', 'shadow-dark-900/50');
+    }
+  });
+
+  // Mobile menu toggle
+  menuBtn?.addEventListener('click', () => {
+    isOpen = !isOpen;
+    if (isOpen) {
+      mobileMenu!.style.maxHeight = mobileMenu!.scrollHeight + 'px';
+      mobileMenu!.style.opacity = '1';
+      const spans = menuIcon!.querySelectorAll('span');
+      spans[0].style.transform = 'rotate(45deg) translateY(4px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translateY(-4px)';
+    } else {
+      mobileMenu!.style.maxHeight = '0';
+      mobileMenu!.style.opacity = '0';
+      const spans = menuIcon!.querySelectorAll('span');
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '1';
+      spans[2].style.transform = '';
+    }
+  });
+
+  // Close on link click
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      mobileMenu!.style.maxHeight = '0';
+      mobileMenu!.style.opacity = '0';
+      const spans = menuIcon!.querySelectorAll('span');
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '1';
+      spans[2].style.transform = '';
+    });
+  });
+</script>

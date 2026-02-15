@@ -1,0 +1,77 @@
+---
+const stats = [
+  { value: 85, suffix: '%', label: 'Reducción de tareas manuales' },
+  { value: 300, suffix: '%', label: 'Aumento en productividad' },
+  { value: 24, suffix: '/7', label: 'Disponibilidad continua' },
+  { value: 60, suffix: '%', label: 'Ahorro en costos operativos' },
+];
+
+const benefits = [
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+    title: 'Velocidad',
+    desc: 'Procesos que tomaban horas ahora se ejecutan en segundos de forma automática.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+    title: 'Precisión',
+    desc: 'Elimina errores humanos. La IA ejecuta con consistencia y exactitud cada vez.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`,
+    title: 'Escalabilidad',
+    desc: 'Tu sistema crece contigo. Maneja miles de operaciones sin contratar más personal.'
+  },
+  {
+    icon: `<svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+    title: 'Ahorro',
+    desc: 'Reduce costos operativos drásticamente automatizando tareas repetitivas.'
+  },
+];
+---
+
+<section id="automatizacion" class="relative section-padding overflow-hidden">
+  <div class="orb hero-orb-2 w-[400px] h-[400px] -right-32 top-0"></div>
+
+  <div class="max-w-7xl mx-auto">
+    <!-- Section header -->
+    <div class="text-center mb-20">
+      <span class="reveal inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-primary-light bg-primary/10 border border-primary/20 mb-6">
+        Automatización con IA
+      </span>
+      <h2 class="reveal font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-6">
+        ¿Qué es la <span class="gradient-text">Automatización Inteligente</span>?
+      </h2>
+      <p class="reveal reveal-delay-1 text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed">
+        La automatización con IA permite que sistemas inteligentes ejecuten tareas repetitivas,
+        tomen decisiones basadas en datos y operen sin intervención humana.
+        <span class="text-white font-medium">Tu equipo se enfoca en lo estratégico, la IA hace el resto.</span>
+      </p>
+    </div>
+
+    <!-- Benefits grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+      {benefits.map((b, i) => (
+        <div class={`reveal reveal-delay-${i + 1} glass-card glow-border p-8 group hover:bg-dark-600/60 transition-all duration-500`}>
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-primary-light mb-6 group-hover:scale-110 transition-transform duration-300" set:html={b.icon} />
+          <h3 class="font-display font-bold text-xl text-white mb-3">{b.title}</h3>
+          <p class="text-slate-400 leading-relaxed">{b.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Stats -->
+    <div id="stats" class="reveal glass-card glow-border p-8 md:p-12">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        {stats.map((stat) => (
+          <div class="text-center">
+            <div class="font-display font-black text-4xl md:text-5xl gradient-text mb-2">
+              <span class="counter" data-target={stat.value} data-suffix={stat.suffix}>0{stat.suffix}</span>
+            </div>
+            <p class="text-sm text-slate-400">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

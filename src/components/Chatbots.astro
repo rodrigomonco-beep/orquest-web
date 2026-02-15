@@ -1,0 +1,143 @@
+---
+const features = [
+  { icon: '🧠', title: 'Comprensión contextual', desc: 'Entiende el contexto de la conversación y responde de forma natural y precisa.' },
+  { icon: '⚡', title: 'Respuestas instantáneas', desc: 'Atención inmediata las 24 horas, los 7 días de la semana, sin tiempos de espera.' },
+  { icon: '🔗', title: 'Multi-plataforma', desc: 'WhatsApp, Instagram, web, Telegram y más. Un solo chatbot, todos los canales.' },
+  { icon: '📊', title: 'Aprende y mejora', desc: 'Se entrena con tus datos y mejora continuamente con cada interacción.' },
+];
+
+const useCases = [
+  'Atención al cliente automatizada',
+  'Generación y calificación de leads',
+  'Soporte técnico nivel 1 y 2',
+  'Reservas y agendamiento',
+  'E-commerce: consultas de productos',
+  'Onboarding de nuevos clientes',
+];
+---
+
+<section id="chatbots" class="relative section-padding overflow-hidden">
+  <div class="orb hero-orb-2 w-[500px] h-[500px] -right-48 bottom-0"></div>
+
+  <div class="max-w-7xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: Content -->
+      <div>
+        <span class="reveal inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-primary-light bg-primary/10 border border-primary/20 mb-6">
+          Chatbots Inteligentes
+        </span>
+        <h2 class="reveal font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-6">
+          Chatbots con <span class="gradient-text">IA Avanzada</span>
+        </h2>
+        <p class="reveal reveal-delay-1 text-lg text-slate-400 mb-10 leading-relaxed">
+          Nuestros chatbots van más allá de respuestas predefinidas. Usan modelos de lenguaje avanzados
+          para mantener conversaciones naturales, resolver problemas complejos y
+          <span class="text-white font-medium">convertir visitantes en clientes</span>.
+        </p>
+
+        <!-- Features -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+          {features.map((f, i) => (
+            <div class={`reveal reveal-delay-${i + 1} flex items-start gap-3 p-4 rounded-xl bg-dark-700/30 border border-white/5 hover:border-primary/20 transition-colors duration-300`}>
+              <span class="text-2xl mt-0.5">{f.icon}</span>
+              <div>
+                <h4 class="font-semibold text-white text-sm mb-1">{f.title}</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">{f.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Use cases -->
+        <div class="reveal">
+          <h4 class="font-semibold text-white mb-4">Casos de uso populares:</h4>
+          <div class="flex flex-wrap gap-2">
+            {useCases.map(uc => (
+              <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-accent/10 text-accent-light border border-accent/20">
+                {uc}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Chatbot mockup -->
+      <div class="reveal reveal-delay-2">
+        <div class="glass-card glow-border p-6 max-w-md mx-auto">
+          <!-- Chat header -->
+          <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/5">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center font-bold text-sm">
+              O
+            </div>
+            <div>
+              <p class="font-semibold text-white text-sm">Orquest Bot</p>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-green-400"></span>
+                <span class="text-xs text-green-400">En línea</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat messages -->
+          <div class="space-y-4 mb-6" id="chat-messages">
+            <!-- Bot message -->
+            <div class="flex gap-3">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex-shrink-0 flex items-center justify-center text-xs font-bold">O</div>
+              <div class="glass rounded-2xl rounded-tl-md px-4 py-3 max-w-[80%]">
+                <p class="text-sm text-slate-200">¡Hola! Soy el asistente de Orquest. ¿En qué puedo ayudarte hoy?</p>
+              </div>
+            </div>
+
+            <!-- User message -->
+            <div class="flex gap-3 justify-end">
+              <div class="bg-primary/20 border border-primary/30 rounded-2xl rounded-tr-md px-4 py-3 max-w-[80%]">
+                <p class="text-sm text-white">Quiero automatizar la atención al cliente de mi tienda online</p>
+              </div>
+            </div>
+
+            <!-- Bot typing -->
+            <div class="flex gap-3">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-accent flex-shrink-0 flex items-center justify-center text-xs font-bold">O</div>
+              <div class="glass rounded-2xl rounded-tl-md px-4 py-3" id="bot-response">
+                <div class="flex gap-1.5 py-1" id="typing-indicator">
+                  <span class="typing-dot w-2 h-2 rounded-full bg-primary-light"></span>
+                  <span class="typing-dot w-2 h-2 rounded-full bg-primary-light"></span>
+                  <span class="typing-dot w-2 h-2 rounded-full bg-primary-light"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input -->
+          <div class="flex gap-2">
+            <div class="flex-1 glass rounded-xl px-4 py-3 text-sm text-slate-500">Escribe un mensaje...</div>
+            <button class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center hover:bg-primary-light transition-colors">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Simulate chatbot typing and response
+  const typingIndicator = document.getElementById('typing-indicator');
+  const botResponse = document.getElementById('bot-response');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && typingIndicator && botResponse) {
+        setTimeout(() => {
+          botResponse.innerHTML = `<p class="text-sm text-slate-200">¡Excelente elección! Podemos implementar un chatbot que responda consultas sobre productos, procese pedidos y gestione devoluciones automáticamente. <span class="text-primary-light font-medium">¿Quieres agendar una demo gratuita?</span></p>`;
+        }, 2500);
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  if (botResponse) observer.observe(botResponse);
+</script>
